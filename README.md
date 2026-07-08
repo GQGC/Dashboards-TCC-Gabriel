@@ -77,6 +77,6 @@ https://gqgc.github.io/Dashboards-TCC-Gabriel/
 **Gabriel Queiroz**
 
 Engenharia da Computação  
-Universidade CEUMA
+Universidade Estadual do Maranhão
 
 2026
