@@ -37,11 +37,6 @@ Além das análises, foi desenvolvido um dashboard interativo para facilitar a v
 │   ├── script.js
 │   └── imagens/
 │
-├── dados/
-│   ├── ANTAQ/
-│   ├── INEP/
-│   └── EMAP/
-│
 └── README.md
 ```
 
