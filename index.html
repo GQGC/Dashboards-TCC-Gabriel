@@ -1006,9 +1006,11 @@
           <div class="card" style="margin-top: 25px">
             <h3>Total de Matrículas</h3>
             <p>
-              As matrículas apresentam estabilidade, conforme observado
-              historicamente.
+              As matrículas apresentam pouco aumento ao longo dos anos, conforme
+              observado historicamente.
             </p>
+            <p><strong>Modelo:</strong> ARIMA(1,0,1)</p>
+            <p><strong>AIC:</strong> -44.7577</p>
             <img
               src="imagens/grafico_arima_total_matriculas.png"
               alt="ARIMA Matrículas"
@@ -1019,6 +1021,14 @@
           <!-- Total de Docentes -->
           <div class="card" style="margin-top: 25px">
             <h3>Total de Docentes</h3>
+            <p>
+              De acordo com os dados históricos, o modelo não foi capaz de
+              extrapolar os dados número de docentes e realizar previsões
+              futuras de maneira confiável, com isso o gráfico permanece sem
+              alterações entre 2025 a 2030.
+            </p>
+            <p><strong>Modelo:</strong> ARIMA(0,0,0)</p>
+            <p><strong>AIC:</strong> -33.1459</p>
             <img
               src="imagens/grafico_arima_total_docentes.png"
               alt="ARIMA Docentes"
@@ -1029,6 +1039,12 @@
           <!-- Escolas com Internet -->
           <div class="card" style="margin-top: 25px">
             <h3>Escolas com Internet</h3>
+            <p>
+              A partir do resultado da previsão de escolas com interne, pode-se
+              notar um aumento gradativo entre 2025 e 2030.
+            </p>
+            <p><strong>Modelo:</strong> ARIMA(1,0,0)</p>
+            <p><strong>AIC:</strong> -23.1713</p>
             <img
               src="imagens/grafico_arima_escolas_internet.png"
               alt="ARIMA Escolas com Internet"
@@ -1103,7 +1119,6 @@
               </tbody>
             </table>
           </div>
-
         </div>
         <!-- /ARIMA - EDUCAÇÃO -->
       </div>
