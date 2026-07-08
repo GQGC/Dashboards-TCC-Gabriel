@@ -1016,17 +1016,6 @@
             <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
           </div>
 
-          <!-- Alunos por Turma -->
-          <div class="card" style="margin-top: 25px">
-            <h3>Alunos por Turma</h3>
-            <p>A métrica "alunos por turma" tende a manter-se estável.</p>
-            <img
-              src="imagens/grafico_arima_alunos_por_turma.png"
-              alt="ARIMA Alunos por Turma"
-            />
-            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
-          </div>
-
           <!-- Total de Docentes -->
           <div class="card" style="margin-top: 25px">
             <h3>Total de Docentes</h3>
@@ -1067,53 +1056,61 @@
                 <tr>
                   <th>Ano</th>
                   <th>Matrículas</th>
-                  <th>Alunos por Turma</th>
+
                   <th>Docentes</th>
+                  <th>IC 95% Docentes</th>
                   <th>Escolas com Internet</th>
+                  <th>IC 95% Escolas com Internet</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>2025</td>
                   <td>18.154</td>
-                  <td>202</td>
-                  <td>DOCENTES_VALUE_2025</td>
-                  <td>ESCOLAS_VALUE_2025</td>
+                  <td>979</td>
+                  <td>885 – 1082</td>
+                  <td>68</td>
+                  <td>58 – 80</td>
                 </tr>
                 <tr style="background: #f9f2fc">
                   <td>2026</td>
                   <td>18.247</td>
-                  <td>201</td>
-                  <td>DOCENTES_VALUE_2026</td>
-                  <td>ESCOLAS_VALUE_2026</td>
+                  <td>979</td>
+                  <td>885 – 1082</td>
+                  <td>73</td>
+                  <td>58 – 90</td>
                 </tr>
                 <tr>
                   <td>2027</td>
                   <td>18.293</td>
-                  <td>201</td>
-                  <td>DOCENTES_VALUE_2027</td>
-                  <td>ESCOLAS_VALUE_2027</td>
+                  <td>979</td>
+                  <td>885 – 1082</td>
+                  <td>77</td>
+                  <td>59 – 102</td>
                 </tr>
                 <tr style="background: #f9f2fc">
                   <td>2028</td>
                   <td>18.315</td>
-                  <td>201</td>
-                  <td>DOCENTES_VALUE_2028</td>
-                  <td>ESCOLAS_VALUE_2028</td>
+                  <td>979</td>
+                  <td>885 – 1082</td>
+                  <td>83</td>
+                  <td>60 – 113</td>
                 </tr>
                 <tr>
                   <td>2029</td>
                   <td>18.326</td>
-                  <td>201</td>
-                  <td>DOCENTES_VALUE_2029</td>
-                  <td>ESCOLAS_VALUE_2029</td>
+                  <td>979</td>
+                  <td>885 – 1082</td>
+                  <td>88</td>
+                  <td>62 – 126</td>
                 </tr>
                 <tr style="background: #f9f2fc">
                   <td>2030</td>
                   <td>18.332</td>
-                  <td>201</td>
-                  <td>DOCENTES_VALUE_2030</td>
-                  <td>ESCOLAS_VALUE_2030</td>
+                  <td>979</td>
+                  <td>885 – 1082</td>
+                  <td>94</td>
+                  <td>64 – 140</td>
                 </tr>
               </tbody>
             </table>
@@ -1162,10 +1159,10 @@
           Após a formação dos agrupamentos pelo algoritmo K-Means, uma Árvore de
           Decisão foi empregada para interpretar os critérios responsáveis pela
           separação dos bairros entre os diferentes clusters. O modelo
-          identificou que os indicadores "Escolas com Quadra" e "Alunos por
-          Escola" foram os atributos mais relevantes para a classificação dos
-          grupos, permitindo uma interpretação objetiva dos fatores que
-          caracterizam cada perfil educacional.
+          identificou que os indicadores "Escolas com Quadra" foram os atributos
+          mais relevantes para a classificação dos grupos, permitindo uma
+          interpretação objetiva dos fatores que caracterizam cada perfil
+          educacional.
         </p>
 
         <img
