@@ -1,0 +1,1207 @@
+<!-- dashboard_itaqui.html -->
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diagnóstico Socioeconômico – Itaqui Bacanga</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+      body {
+        font-family: "Nunito Sans", sans-serif;
+        background: #ecf0f1;
+        margin: 0;
+      }
+
+      .header {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: white;
+        padding: 35px;
+        text-align: center;
+        border-radius: 0 0 20px 20px;
+        margin-bottom: 30px;
+      }
+
+      .section {
+        background: white;
+        margin: 25px auto;
+        padding: 20px;
+        border-radius: 12px;
+        width: 95%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid #3498db;
+        box-sizing: border-box;
+      }
+
+      .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+      }
+
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .card-title {
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .card-value {
+        font-size: 26px;
+        font-weight: 700;
+        color: #3498db;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .graph {
+        width: 100%;
+      }
+
+      .grafico-box {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin: 25px auto;
+        width: 95%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+      }
+
+      .subsection {
+        margin-top: 35px;
+        padding: 25px;
+        border-radius: 14px;
+        box-sizing: border-box;
+      }
+
+      .subsection h2 {
+        margin-top: 0;
+      }
+
+      .subsection-blue {
+        background: #f8fbff;
+        border-left: 6px solid #3498db;
+      }
+
+      .subsection-orange {
+        background: #fffaf3;
+        border-left: 6px solid #f39c12;
+      }
+
+      .subsection-green {
+        background: #f5fff8;
+        border-left: 6px solid #27ae60;
+      }
+
+      .subsection-darkblue {
+        background: #f4f9ff;
+        border-left: 6px solid #2980b9;
+      }
+
+      .subsection-amber {
+        background: #fff8f1;
+        border-left: 6px solid #e67e22;
+      }
+
+      .subsection-purple {
+        background: #faf5ff;
+        border-left: 6px solid #8e44ad;
+      }
+
+      .fonte-grafico {
+        margin-top: 10px;
+        font-size: 11px;
+        color: #666;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      .porto-section {
+        margin-top: 40px;
+        padding: 25px;
+        border-radius: 14px;
+        background: #f7fbff;
+        border-left: 7px solid #2980b9;
+        box-sizing: border-box;
+      }
+
+      .porto-section h2 {
+        margin-top: 0;
+      }
+
+      .edu-section {
+        margin-top: 40px;
+        padding: 25px;
+        border-radius: 14px;
+        background: #fffdf8;
+        border-left: 7px solid #d35400;
+        box-sizing: border-box;
+      }
+
+      .edu-section h2 {
+        margin-top: 0;
+      }
+
+      .card img {
+        max-width: 75%;
+        height: auto;
+        width: auto\9;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+      }
+
+      th {
+        padding: 12px;
+      }
+
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+
+      .table-wrapper {
+        margin-top: 30px;
+        overflow-x: auto;
+      }
+
+      .obs-box {
+        margin-top: 25px;
+        padding: 18px;
+        border-radius: 10px;
+        background: #ffffff;
+        border-left: 4px solid #f39c12;
+      }
+
+      .obs-box p {
+        margin-top: 10px;
+        line-height: 1.7;
+      }
+
+      .placeholder-box {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        background: white;
+        text-align: center;
+        color: #7f8c8d;
+      }
+
+      .section-title {
+        width: 95%;
+        margin: 25px auto 0;
+        display: block;
+      }
+
+      .fonte-imagem {
+        text-align: center;
+        font-size: 0.9rem;
+        font-style: italic;
+        color: #555;
+        margin-top: 6px;
+        margin-bottom: 20px;
+      }
+
+      .grafico {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 20px auto 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ===== CABEÇALHO ===== -->
+    <div class="header">
+      <h1>Diagnóstico Socioeconômico – Região Itaqui Bacanga</h1>
+      <p>Indicadores sociais relevantes para análise territorial portuária</p>
+    </div>
+
+    <!-- ===== INDICADORES SOCIAIS ===== -->
+    <div id="conteudo"></div>
+
+    <script>
+      function gerarId(texto) {
+        return texto.replace(/[^a-zA-Z0-9]/g, "");
+      }
+
+      /* ========= BASE DE DADOS ========= */
+      const diagnostico = {
+        Saúde: {
+          "Pré-natal insuficiente (%)": {
+            geral: "66,63",
+            detalhado: {
+              "Residencial Paraíso": "55,0",
+              "Vila Embratel": "61,29",
+              "Anjo da Guarda": "61,73",
+              Fumacê: "64,1",
+              "São Raimundo e Vila Ariri": "64,69",
+              Gancharia: "65,26",
+              Gapara: "65,91",
+              "Sá Viana e Jambeiro": "67,31",
+              "Vila Mauro Fecury 2": "67,44",
+              "Vila Mauro Fecury 1": "70,99",
+              "Vila Maranhão": "72,66",
+              "Vila Nova": "74,17",
+              "Alto da Esperança": "75,86",
+              "Vila Bacanga": "77,03",
+              "Camboa dos Frades e Ilhinha": "25,0",
+              Jacamim: "60,0",
+              "Cajueiro e Mãe Chica": "62,5",
+              "Vila Collier": "72,43",
+              "Estiva / Samara": "74,27",
+              "Porto Grande": "76,0",
+            },
+          },
+          "Mortalidade câncer colo do útero": {
+            geral: "15",
+            detalhado: {
+              "Residencial Paraíso": "1",
+              "São Raimundo e Vila Ariri": "1",
+              "Vila Bacanga": "1",
+              "Vila Mauro Fecury 2": "1",
+              "Vila Nova": "1",
+              "Anjo da Guarda": "3",
+              "Sá Viana e Jambeiro": "3",
+              "Vila Embratel": "3",
+              "Porto Grande": "1",
+            },
+          },
+        },
+        "Vulnerabilidade Social": {
+          "Extrema pobreza (%)": {
+            geral: "9,27",
+            detalhado: {
+              Fumacê: "4,04",
+              "Anjo da Guarda": "6,27",
+              Gancharia: "6,39",
+              "Vila Embratel": "6,41",
+              "Vila Bacanga": "6,76",
+              "Residencial Paraíso": "7,65",
+              "Vila Nova": "9,95",
+              "Vila Mauro Fecury 1": "10,3",
+              "Vila Mauro Fecury 2": "10,57",
+              "Sá Viana e Jambeiro": "10,58",
+              "São Raimundo e Vila Ariri": "11,13",
+              Gapara: "12,6",
+              "Vila Maranhão": "12,85",
+              "Alto da Esperança": "13,27",
+              "Vila Collier": "9,24",
+              "Camboa dos Frades e Ilhinha": "12,47",
+              "Porto Grande": "14,23",
+              "Estiva / Samara": "21,35",
+              Jacamim: "22,56",
+              "Cajueiro e Mãe Chica": "24,0",
+            },
+          },
+          "Aglomerados subnormais (%)": {
+            geral: "47,19",
+            detalhado: {
+              Gancharia: "38,11",
+              "Vila Mauro Fecury 1": "88,36",
+              Gapara: "90,07",
+              "Vila Embratel": "93,09",
+              "Sá Viana e Jambeiro": "94,31",
+              "Alto da Esperança": "100,0",
+              "Residencial Paraíso": "100,0",
+              "Vila Mauro Fecury 2": "100,0",
+              "Vila Nova": "100,0",
+            },
+          },
+        },
+        Infraestrutura: {
+          "Domicílios sem rede de água (%)": {
+            geral: "27,87",
+            detalhado: {
+              "Vila Bacanga": "3,97",
+              "Vila Mauro Fecury 2": "4,41",
+              "Anjo da Guarda": "4,85",
+              Fumacê: "5,37",
+              Gancharia: "12,08",
+              "São Raimundo e Vila Ariri": "19,79",
+              "Sá Viana e Jambeiro": "21,01",
+              "Vila Nova": "21,57",
+              "Vila Mauro Fecury 1": "22,03",
+              "Vila Embratel": "31,65",
+              "Alto da Esperança": "65,45",
+              "Vila Maranhão": "67,38",
+              Gapara: "68,59",
+              "Residencial Paraíso": "83,78",
+              "Estiva / Samara": "37,02",
+              "Vila Collier": "51,06",
+              "Camboa dos Frades e Ilhinha": "80,14",
+              "Cajueiro e Mãe Chica": "95,83",
+              "Porto Grande": "99,48",
+              Jacamim: "99,51",
+            },
+          },
+        },
+        Educação: {
+          "Escolas sem internet (%)": {
+            geral: "67,8",
+            detalhado: {
+              Fumacê: "0",
+              "Sá Viana e Jambeiro": "0",
+              "Anjo da Guarda": "33,33",
+              "Vila Bacanga": "33,33",
+              "Vila Embratel": "42,86",
+              "Alto da Esperança": "50,0",
+              "Vila Maranhão": "60,0",
+              Gancharia: "75,0",
+              Gapara: "100,0",
+              "São Raimundo e Vila Ariri": "100,0",
+              "Vila Mauro Fecury 1": "100,0",
+              "Vila Nova": "100,0",
+              "Vila Collier": "85,71",
+              "Estiva / Samara": "100,0",
+              Jacamim: "100,0",
+              "Porto Grande": "100,0",
+            },
+          },
+          "Abandono Ensino Médio (%)": {
+            geral: "13,39",
+            detalhado: {
+              "Vila Bacanga": "3,69",
+              "Vila Nova": "4,95",
+              "Vila Embratel": "6,12",
+              "Vila Collier": "6,78",
+              "Estiva / Samara": "8,44",
+              "Anjo da Guarda": "16,34",
+              "Vila Maranhão": "23,58",
+              "São Raimundo e Vila Ariri": "30,23",
+              "Sá Viana e Jambeiro": "31,68",
+            },
+          },
+          "Analfabetismo 10-14 anos (%)": {
+            geral: "4,26",
+            detalhado: {
+              Gancharia: "2,13",
+              "Alto da Esperança": "2,36",
+              "Anjo da Guarda": "2,57",
+              "Vila Embratel": "2,91",
+              "Vila Bacanga": "3,07",
+              Fumacê: "3,6",
+              "São Raimundo e Vila Ariri": "4,17",
+              "Vila Mauro Fecury 2": "4,9",
+              "Vila Nova": "4,99",
+              Gapara: "5,04",
+              "Sá Viana e Jambeiro": "5,04",
+              "Vila Mauro Fecury 1": "6,14",
+              "Vila Maranhão": "6,7",
+              "Residencial Paraíso": "7,97",
+              "Porto Grande": "3,39",
+              "Camboa dos Frades e Ilhinha": "4,76",
+              Jacamim: "6,06",
+              "Estiva / Samara": "7,25",
+              "Vila Collier": "7,63",
+              "Cajueiro e Mãe Chica": "8,93",
+            },
+          },
+        },
+      };
+
+      const container = document.getElementById("conteudo");
+
+      Object.entries(diagnostico).forEach(([tema, indicadores]) => {
+        const section = document.createElement("div");
+        section.className = "section";
+        section.innerHTML = `<h2>${tema}</h2>`;
+
+        const grid = document.createElement("div");
+        grid.className = "grid";
+        section.appendChild(grid);
+        container.appendChild(section);
+
+        Object.entries(indicadores).forEach(([nome, dados], i) => {
+          const idGrafico = gerarId(tema + nome + i);
+
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <div class="card-title">${nome}</div>
+
+            <div class="card-value">
+              ${dados.geral}
+            </div>
+
+            <div class="graph" id="${idGrafico}"></div>
+
+            <div class="fonte-grafico">
+              Fonte: Diagnóstico Itaqui-Bacanga —
+              Instituto de Cidadania Empresarial do Maranhão
+              & Empresa Maranhense de Administração Portuária
+              (EMAP), 2014.
+            </div>
+          `;
+          grid.appendChild(card);
+
+          requestAnimationFrame(() => {
+            const locais = Object.keys(dados.detalhado);
+            const valores = Object.values(dados.detalhado).map((v) =>
+              typeof v === "string" ? Number(v.replace(",", ".")) : Number(v),
+            );
+
+            const altura = 260 + locais.length * 12;
+            const rotacao = locais.length > 10 ? -45 : 0;
+            const margemBottom = locais.length > 10 ? 120 : 50;
+
+            Plotly.newPlot(
+              idGrafico,
+              [
+                {
+                  x: locais,
+                  y: valores,
+                  type: "bar",
+                  text: valores,
+                  textposition: "outside",
+                  marker: { opacity: 0.9 },
+                },
+              ],
+              {
+                autosize: true,
+                height: altura,
+                bargap: 0.02,
+                margin: { l: 40, r: 20, t: 20, b: margemBottom },
+                xaxis: { tickangle: rotacao, automargin: true },
+                yaxis: { rangemode: "tozero", automargin: true },
+              },
+              { displayModeBar: false, responsive: true },
+            );
+          });
+        });
+      });
+    </script>
+
+    <!-- ===== MOVIMENTAÇÃO PORTUÁRIA ===== -->
+    <h2 class="section-title">Movimentação Portuária – Porto do Itaqui</h2>
+
+    <div class="grafico-box">
+      <div id="grafico_navios"></div>
+    </div>
+
+    <div class="grafico-box">
+      <div id="grafico_carga"></div>
+    </div>
+
+    <script>
+      const anos = [
+        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+        2022, 2023, 2024,
+      ];
+      const navios = [
+        696, 807, 805, 760, 832, 859, 766, 777, 763, 828, 909, 979, 998, 1043,
+        986,
+      ];
+      const carga = [
+        12673195, 14001748, 15753758, 15310430, 18021144, 21824774, 16898774,
+        19113973, 22403221, 25171460, 25337152, 31064139, 33610776, 36419648,
+        34038877,
+      ];
+
+      // converter para milhões
+      const cargaMilhoes = carga.map((valor) => valor / 1000000);
+
+      // =========================
+      // GRÁFICO NAVIOS
+      // =========================
+
+      Plotly.newPlot(
+        "grafico_navios",
+        [
+          {
+            x: anos,
+            y: navios,
+            type: "bar",
+          },
+        ],
+        {
+          title: "Navios Atracados por Ano",
+
+          xaxis: {
+            title: "Ano",
+
+            tickmode: "array",
+            tickvals: anos,
+            ticktext: anos,
+            tickangle: -45,
+          },
+
+          yaxis: {
+            title: "Quantidade",
+          },
+
+          margin: {
+            b: 80,
+          },
+        },
+        {
+          responsive: true,
+          displayModeBar: false,
+        },
+      );
+
+      // =========================
+      // GRÁFICO CARGA
+      // =========================
+
+      Plotly.newPlot(
+        "grafico_carga",
+        [
+          {
+            x: anos,
+            y: cargaMilhoes,
+            type: "bar",
+          },
+        ],
+        {
+          title: "Movimentação de Carga por Ano",
+
+          xaxis: {
+            title: "Ano",
+
+            tickmode: "array",
+            tickvals: anos,
+            ticktext: anos,
+            tickangle: -45,
+          },
+
+          yaxis: {
+            title: "Milhões de Toneladas",
+          },
+
+          margin: {
+            b: 80,
+          },
+        },
+        {
+          responsive: true,
+          displayModeBar: false,
+        },
+      );
+    </script>
+
+    <div class="fonte-grafico">
+      Fonte: EMAP - Porto do Itaqui - Relatório de Movimentação de Cargas 2001 a
+      2024.
+    </div>
+
+    <!-- ===== MODELAGEM COMPUTACIONAL E PREVISÕES ===== -->
+    <div class="section">
+      <h2>Modelagem Computacional e Previsões</h2>
+
+      <p style="font-size: 17px; line-height: 1.7">
+        Foram aplicados diferentes modelos computacionais para análise temporal
+        dos indicadores portuários e educacionais da região Itaqui-Bacanga,
+        utilizando séries históricas e técnicas estatísticas preditivas.
+      </p>
+
+      <p style="font-size: 17px; line-height: 1.7">
+        A estrutura foi organizada por área temática e por técnica de modelagem,
+        permitindo futuras expansões com novos algoritmos e comparações entre
+        modelos preditivos.
+      </p>
+
+      <!-- ===== PORTO DO ITAQUI ===== -->
+      <div class="porto-section">
+        <h2>Modelagem — Porto do Itaqui</h2>
+
+        <p>
+          Esta seção apresenta os modelos aplicados aos indicadores de
+          movimentação portuária do Porto do Itaqui.
+        </p>
+
+        <!-- HOLT-WINTERS - PORTO -->
+        <div class="subsection subsection-green">
+          <h2>Holt-Winters</h2>
+
+          <p>
+            O modelo Holt-Winters foi aplicado para modelagem de séries
+            temporais da movimentação portuária utilizando suavização
+            exponencial com tendência aditiva, permitindo estimar a evolução
+            futura dos indicadores históricos.
+          </p>
+
+          <p>
+            O método Holt-Winters prioriza o comportamento temporal da série,
+            ajustando automaticamente nível e tendência ao longo dos anos.
+          </p>
+
+          <!-- Navios Atracados -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Navios Atracados</h3>
+            <p><strong>Smoothing Level:</strong> 0,927109</p>
+            <p><strong>Smoothing Trend:</strong> 0,000247</p>
+            <p><strong>Nível Inicial:</strong> 685,461695</p>
+            <p><strong>Tendência Inicial:</strong> 20,313616</p>
+            <p>
+              O modelo indica continuidade do crescimento da movimentação
+              portuária, mantendo tendência positiva ao longo dos próximos anos.
+            </p>
+            <img
+              src="imagens/grafico_holt_winters_navios.png"
+              alt="Holt-Winters Navios"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Carga Movimentada -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Carga Movimentada</h3>
+            <p><strong>Smoothing Level:</strong> 0,665000</p>
+            <p><strong>Smoothing Trend:</strong> 0,000100</p>
+            <p><strong>Nível Inicial:</strong> 11.561.766,60</p>
+            <p><strong>Tendência Inicial:</strong> 1.191.905,65</p>
+            <p>
+              O modelo projeta crescimento contínuo da carga movimentada,
+              mantendo trajetória ascendente até 2030.
+            </p>
+            <img
+              src="imagens/grafico_holt_winters_carga.png"
+              alt="Holt-Winters Carga"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Tabela de Previsões Holt-Winters Porto -->
+          <div class="table-wrapper">
+            <h3>Previsões Futuras do Porto — Holt-Winters (2025–2030)</h3>
+            <table>
+              <thead style="background: #27ae60; color: white">
+                <tr>
+                  <th>Ano</th>
+                  <th>Navios Previstos</th>
+                  <th>Carga Prevista (t)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025</td>
+                  <td>1011</td>
+                  <td>36.140.209</td>
+                </tr>
+                <tr style="background: #eefaf2">
+                  <td>2026</td>
+                  <td>1032</td>
+                  <td>37.332.665</td>
+                </tr>
+                <tr>
+                  <td>2027</td>
+                  <td>1052</td>
+                  <td>38.525.121</td>
+                </tr>
+                <tr style="background: #eefaf2">
+                  <td>2028</td>
+                  <td>1072</td>
+                  <td>39.717.577</td>
+                </tr>
+                <tr>
+                  <td>2029</td>
+                  <td>1093</td>
+                  <td>40.910.033</td>
+                </tr>
+                <tr style="background: #eefaf2">
+                  <td>2030</td>
+                  <td>1113</td>
+                  <td>42.102.490</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Observação técnica -->
+          <div class="obs-box">
+            <strong>Observação técnica:</strong>
+            <p>
+              Durante o treinamento do modelo, o algoritmo apresentou aviso de
+              convergência ("Optimization failed to converge"). Esse
+              comportamento indica que o procedimento numérico não encontrou
+              plenamente os parâmetros ótimos de ajuste da série temporal dentro
+              dos critérios internos de convergência do método.
+            </p>
+            <p>
+              Apesar disso, o modelo conseguiu gerar previsões coerentes e
+              compatíveis com o comportamento histórico da movimentação
+              portuária, permitindo sua utilização para fins de análise
+              exploratória e avaliação de tendência temporal.
+            </p>
+          </div>
+        </div>
+        <!-- /HOLT-WINTERS - PORTO -->
+
+        <!-- ARIMA - PORTO -->
+        <div class="subsection subsection-purple">
+          <h2>ARIMA</h2>
+
+          <p>
+            O modelo ARIMA (AutoRegressive Integrated Moving Average) foi
+            aplicado para previsão de séries temporais, combinando componentes
+            autorregressivos, de média móvel e diferenciação para capturar
+            padrões em séries não estacionárias. No caso do Porto do Itaqui,
+            utilizou-se ARIMA(0,1,0) para o número de navios e ARIMA(1,0,1) para
+            a carga movimentada.
+          </p>
+
+          <!-- Navios Atracados -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Navios Atracados</h3>
+            <p><strong>Modelo:</strong> ARIMA(0,1,0)</p>
+            <p><strong>AIC:</strong> -32,777</p>
+            <p>
+              O modelo prevê número constante de navios (986) no horizonte, com
+              intervalo de confiança ligeiramente crescente.
+            </p>
+            <img src="grafico_arima_navios.png" alt="ARIMA Navios" />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Carga Movimentada -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Carga Movimentada</h3>
+            <p><strong>Modelo:</strong> ARIMA(1,0,1)</p>
+            <p><strong>AIC:</strong> -15,254</p>
+            <p>
+              As previsões indicam crescimento gradual da carga movimentada, com
+              faixas de confiança ampliando ao longo do tempo.
+            </p>
+            <img src="grafico_arima_carga.png" alt="ARIMA Carga" />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Tabela de Previsões Porto ARIMA -->
+          <div class="table-wrapper">
+            <h3>Previsões Futuras do Porto — ARIMA (2025–2030)</h3>
+            <table>
+              <thead style="background: #8e44ad; color: white">
+                <tr>
+                  <th>Ano</th>
+                  <th>Navios Previstos</th>
+                  <th>IC 95% Navios</th>
+                  <th>Carga Prevista (t)</th>
+                  <th>IC 95% Carga</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025</td>
+                  <td>986</td>
+                  <td>870 – 1117</td>
+                  <td>38.420.869</td>
+                  <td>32.041.460 – 46.070.407</td>
+                </tr>
+                <tr style="background: #f9f2fc">
+                  <td>2026</td>
+                  <td>986</td>
+                  <td>827 – 1176</td>
+                  <td>41.147.316</td>
+                  <td>34.318.745 – 49.334.602</td>
+                </tr>
+                <tr>
+                  <td>2027</td>
+                  <td>986</td>
+                  <td>795 – 1224</td>
+                  <td>44.039.641</td>
+                  <td>36.734.795 – 52.797.082</td>
+                </tr>
+                <tr style="background: #f9f2fc">
+                  <td>2028</td>
+                  <td>986</td>
+                  <td>768 – 1265</td>
+                  <td>47.106.023</td>
+                  <td>39.296.465 – 56.467.608</td>
+                </tr>
+                <tr>
+                  <td>2029</td>
+                  <td>986</td>
+                  <td>746 – 1303</td>
+                  <td>50.354.928</td>
+                  <td>42.010.848 – 60.356.285</td>
+                </tr>
+                <tr style="background: #f9f2fc">
+                  <td>2030</td>
+                  <td>986</td>
+                  <td>727 – 1338</td>
+                  <td>53.795.113</td>
+                  <td>44.885.285 – 64.473.563</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- /ARIMA - PORTO -->
+      </div>
+
+      <!-- ===== INDICADORES EDUCACIONAIS ===== -->
+      <div class="edu-section">
+        <h2>Modelagem — Indicadores Educacionais</h2>
+
+        <p>
+          Esta seção apresenta os modelos aplicados aos indicadores educacionais
+          regionais da área Itaqui-Bacanga.
+        </p>
+
+        <!-- HOLT-WINTERS - EDUCAÇÃO -->
+        <div class="subsection subsection-green">
+          <h2>Holt-Winters</h2>
+
+          <p>
+            O modelo Holt-Winters foi aplicado aos indicadores educacionais
+            regionais utilizando suavização exponencial com tendência aditiva,
+            permitindo analisar o comportamento temporal das séries históricas e
+            realizar projeções futuras até 2030.
+          </p>
+
+          <p>
+            O método Holt-Winters ajusta automaticamente o nível e a tendência
+            da série, priorizando o comportamento temporal dos dados ao longo
+            dos anos.
+          </p>
+
+          <!-- TOTAL MATRÍCULAS -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Total de Matrículas</h3>
+
+            <p><strong>Smoothing Level:</strong> 0,9999999754</p>
+            <p><strong>Smoothing Trend:</strong> 0,0000000096</p>
+            <p><strong>Nível Inicial:</strong> 22611,99</p>
+            <p><strong>Tendência Inicial:</strong> -261,35</p>
+
+            <p>
+              O modelo indica tendência contínua de redução das matrículas
+              escolares ao longo dos próximos anos.
+            </p>
+
+            <img
+              src="imagens/grafico_holt_winters_total_matriculas.png"
+              alt="Holt-Winters Total Matrículas"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- ESCOLAS COM INTERNET -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Escolas com Internet</h3>
+
+            <p><strong>Smoothing Level:</strong> 0,9380120014</p>
+            <p><strong>Smoothing Trend:</strong> 0,0000000000</p>
+            <p><strong>Nível Inicial:</strong> 30,39</p>
+            <p><strong>Tendência Inicial:</strong> 2,55</p>
+
+            <p>
+              O modelo projeta aumento contínuo da quantidade de escolas com
+              acesso à internet na região.
+            </p>
+
+            <img
+              src="imagens/grafico_holt_winters_escolas_com_internet.png"
+              alt="Holt-Winters Escolas com Internet"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Tabela de Previsões Educação Holt-Winters -->
+          <div class="table-wrapper">
+            <h3>Previsões Futuras Educação — Holt-Winters (2025–2030)</h3>
+
+            <table>
+              <thead style="background: #27ae60; color: white">
+                <tr>
+                  <th>Ano</th>
+                  <th>Total Matrículas</th>
+                  <th>Total Docentes</th>
+                  <th>Escolas com Internet</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>2025</td>
+                  <td>18.954,65</td>
+                  <td>1122,42</td>
+                  <td>66,07</td>
+                </tr>
+
+                <tr style="background: #eefaf2">
+                  <td>2026</td>
+                  <td>18.693,31</td>
+                  <td>1138,02</td>
+                  <td>68,62</td>
+                </tr>
+
+                <tr>
+                  <td>2027</td>
+                  <td>18.431,96</td>
+                  <td>1153,62</td>
+                  <td>71,17</td>
+                </tr>
+
+                <tr style="background: #eefaf2">
+                  <td>2028</td>
+                  <td>18.170,61</td>
+                  <td>1169,21</td>
+                  <td>73,72</td>
+                </tr>
+
+                <tr>
+                  <td>2029</td>
+                  <td>17.909,27</td>
+                  <td>1184,81</td>
+                  <td>76,27</td>
+                </tr>
+
+                <tr style="background: #eefaf2">
+                  <td>2030</td>
+                  <td>17.647,92</td>
+                  <td>1200,41</td>
+                  <td>78,82</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- OBSERVAÇÃO -->
+          <div class="obs-box">
+            <strong>Observação técnica:</strong>
+
+            <p>
+              Os modelos Holt-Winters foram treinados utilizando suavização
+              exponencial aditiva sem componente sazonal, considerando apenas
+              tendência temporal dos indicadores educacionais regionais.
+            </p>
+          </div>
+        </div>
+        <!-- /HOLT-WINTERS - EDUCAÇÃO -->
+
+        <!-- ARIMA - EDUCAÇÃO -->
+        <div class="subsection subsection-purple">
+          <h2>ARIMA</h2>
+
+          <p>
+            Para os indicadores educacionais dos bairros de Itaqui-Bacanga,
+            aplicou-se o modelo ARIMA de maneira similar ao Porto do Itaqui,
+            combinando componentes autorregressivos, de média móvel e
+            diferenciação para capturar padrões em séries não estacionárias.
+          </p>
+
+          <!-- Total de Matrículas -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Total de Matrículas</h3>
+            <p>
+              As matrículas apresentam estabilidade, conforme observado
+              historicamente.
+            </p>
+            <img
+              src="imagens/grafico_arima_total_matriculas.png"
+              alt="ARIMA Matrículas"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Alunos por Turma -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Alunos por Turma</h3>
+            <p>A métrica "alunos por turma" tende a manter-se estável.</p>
+            <img
+              src="imagens/grafico_arima_alunos_por_turma.png"
+              alt="ARIMA Alunos por Turma"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Total de Docentes -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Total de Docentes</h3>
+            <p>
+              <em
+                >Observação: insira os valores previstos para docentes
+                2025–2030.</em
+              >
+            </p>
+            <img
+              src="imagens/grafico_arima_total_docentes.png"
+              alt="ARIMA Docentes"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Escolas com Internet -->
+          <div class="card" style="margin-top: 25px">
+            <h3>Escolas com Internet</h3>
+            <p>
+              <em
+                >Observação: insira os valores previstos para escolas com
+                internet 2025–2030.</em
+              >
+            </p>
+            <img
+              src="imagens/grafico_arima_escolas_internet.png"
+              alt="ARIMA Escolas com Internet"
+            />
+            <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+          </div>
+
+          <!-- Tabela de Previsões Educação ARIMA -->
+          <div class="table-wrapper">
+            <h3>Previsões Futuras Educação — ARIMA (2025–2030)</h3>
+            <table>
+              <thead style="background: #8e44ad; color: white">
+                <tr>
+                  <th>Ano</th>
+                  <th>Matrículas</th>
+                  <th>Alunos por Turma</th>
+                  <th>Docentes</th>
+                  <th>Escolas com Internet</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2025</td>
+                  <td>18.154</td>
+                  <td>202</td>
+                  <td>DOCENTES_VALUE_2025</td>
+                  <td>ESCOLAS_VALUE_2025</td>
+                </tr>
+                <tr style="background: #f9f2fc">
+                  <td>2026</td>
+                  <td>18.247</td>
+                  <td>201</td>
+                  <td>DOCENTES_VALUE_2026</td>
+                  <td>ESCOLAS_VALUE_2026</td>
+                </tr>
+                <tr>
+                  <td>2027</td>
+                  <td>18.293</td>
+                  <td>201</td>
+                  <td>DOCENTES_VALUE_2027</td>
+                  <td>ESCOLAS_VALUE_2027</td>
+                </tr>
+                <tr style="background: #f9f2fc">
+                  <td>2028</td>
+                  <td>18.315</td>
+                  <td>201</td>
+                  <td>DOCENTES_VALUE_2028</td>
+                  <td>ESCOLAS_VALUE_2028</td>
+                </tr>
+                <tr>
+                  <td>2029</td>
+                  <td>18.326</td>
+                  <td>201</td>
+                  <td>DOCENTES_VALUE_2029</td>
+                  <td>ESCOLAS_VALUE_2029</td>
+                </tr>
+                <tr style="background: #f9f2fc">
+                  <td>2030</td>
+                  <td>18.332</td>
+                  <td>201</td>
+                  <td>DOCENTES_VALUE_2030</td>
+                  <td>ESCOLAS_VALUE_2030</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Estes resultados demonstram as projeções ARIMA para os indicadores
+            estudados. A seção ARIMA segue o mesmo padrão de formatação das
+            demais, garantindo coesão visual no dashboard.
+          </p>
+        </div>
+        <!-- /ARIMA - EDUCAÇÃO -->
+      </div>
+      <!-- /INDICADORES EDUCACIONAIS -->
+
+      <!-- K-MEANS -->
+      <div class="section">
+        <h2>K-Means</h2>
+
+        <p>
+          O algoritmo K-Means foi utilizado para agrupar os bairros da região
+          Itaqui-Bacanga com base em indicadores educacionais, permitindo
+          identificar localidades com características semelhantes. A análise
+          resultou na formação de três grupos distintos, representando bairros
+          com maior infraestrutura educacional, perfil intermediário e maior
+          vulnerabilidade educacional. Essa abordagem facilita a identificação
+          de regiões prioritárias para ações de planejamento e formulação de
+          políticas públicas.
+        </p>
+
+        <img
+          src="imagens/heatmap_clusters.png"
+          alt="Heatmap dos clusters"
+          class="grafico"
+        />
+
+        <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+      </div>
+      <!-- /K-MEANS -->
+
+      <!-- ÁRVORE DE DECISÃO -->
+      <div class="section">
+        <h2>Árvore de Decisão</h2>
+
+        <p>
+          Após a formação dos agrupamentos pelo algoritmo K-Means, uma Árvore de
+          Decisão foi empregada para interpretar os critérios responsáveis pela
+          separação dos bairros entre os diferentes clusters. O modelo
+          identificou que os indicadores "Escolas com Quadra" e "Alunos por
+          Escola" foram os atributos mais relevantes para a classificação dos
+          grupos, permitindo uma interpretação objetiva dos fatores que
+          caracterizam cada perfil educacional.
+        </p>
+
+        <img
+          src="imagens/arvore_decisao_clusters.png"
+          alt="Importância dos indicadores da Árvore de Decisão"
+          class="grafico"
+        />
+
+        <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+      </div>
+      <!-- /ÁRVORE DE DECISÃO -->
+
+      <!-- PCA -->
+      <div class="section">
+        <h2>Análise de Componentes Principais (PCA)</h2>
+
+        <p>
+          A Análise de Componentes Principais (PCA) foi utilizada para reduzir a
+          dimensionalidade dos dados e representar, em duas dimensões, a
+          distribuição dos bairros segundo os indicadores educacionais
+          analisados. A projeção facilita a visualização dos agrupamentos
+          obtidos pelo K-Means, evidenciando a proximidade entre bairros com
+          características semelhantes e a separação entre aqueles pertencentes a
+          diferentes clusters.
+        </p>
+
+        <img
+          src="imagens/grafico_kmeans_pca.png"
+          alt="Projeção dos clusters utilizando PCA"
+          class="grafico"
+        />
+
+        <p class="fonte-imagem">Fonte: Elaborado pelo autor (2026).</p>
+      </div>
+      <!-- /PCA -->
+    </div>
+    <!-- /MODELAGEM COMPUTACIONAL E PREVISÕES -->
+  </body>
+</html>
