@@ -1,8 +1,8 @@
-Diagnóstico Itaqui-Bacanga: Aplicação de Técnicas de Aprendizado de Máquina na Análise Integrada de Indicadores Portuários e Educacionais
+# Diagnóstico Itaqui-Bacanga: Aplicação de Técnicas de Aprendizado de Máquina na Análise Integrada de Indicadores Portuários e Educacionais
 
 Este repositório contém os códigos desenvolvidos durante o Trabalho de Conclusão de Curso (TCC) do curso de Engenharia da Computação.
 
-Resumo
+# Resumo
 
 O objetivo deste trabalho é analisar a relação entre indicadores portuários do Porto do Itaqui e indicadores educacionais dos bairros localizados na região Itaqui-Bacanga, utilizando técnicas de Aprendizado de Máquina e análise de séries temporais.
 
@@ -54,7 +54,7 @@ Dashboard
 
 O dashboard desenvolvido durante o trabalho encontra-se disponível em:
 
-(Inserir link do Vercel)
+https://gqgc.github.io/Dashboards-TCC-Gabriel/
 
 Autor
 
