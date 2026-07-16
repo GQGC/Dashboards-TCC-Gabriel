@@ -228,8 +228,8 @@ function renderizarIndicadoresSociais() {
         );
 
         const altura = 260 + locais.length * 12;
-        const rotacao = locais.length > 10 ? -45 : 0;
-        const margemBottom = locais.length > 10 ? 120 : 50;
+        const rotacao = locais.length > 5 ? -45 : 0;
+        const margemBottom = locais.length > 5 ? 120 : 50;
 
         Plotly.newPlot(
           idGrafico,
@@ -265,8 +265,7 @@ function renderizarMovimentacaoPortuaria() {
     2022, 2023, 2024,
   ];
   const navios = [
-    696, 807, 805, 760, 832, 859, 766, 777, 763, 828, 909, 979, 998, 1043,
-    986,
+    696, 807, 805, 760, 832, 859, 766, 777, 763, 828, 909, 979, 998, 1043, 986,
   ];
   const carga = [
     12673195, 14001748, 15753758, 15310430, 18021144, 21824774, 16898774,
