@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  background: #ecf0f1;
+  margin: 0;
+}
+
+.header {
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: white;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+}
+
+.header-texto {
+  flex: 1;
+}
+
+.header-texto h1 {
+  margin: 0;
+}
+
+.header-texto p {
+  margin: 8px 0 0;
+}
+
+.logo-uema {
+  max-height: 120px; /* ajuste conforme seu header */
+  width: auto;
+  object-fit: contain;
+  margin-left: 25px;
+  flex-shrink: 0;
+}
+
+.autor {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #e6e6e6;
+  font-style: italic;
+}
+
+.section {
+  background: white;
+  margin: 25px auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 95%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #3498db;
+  box-sizing: border-box;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-title {
+  font-weight: 600;
+  text-align: center;
+}
+
+.card-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #3498db;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.graph {
+  width: 100%;
+}
+
+.grafico-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 25px auto;
+  width: 95%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.subsection {
+  margin-top: 35px;
+  padding: 25px;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.subsection h2 {
+  margin-top: 0;
+}
+
+.subsection-blue {
+  background: #f8fbff;
+  border-left: 6px solid #3498db;
+}
+
+.subsection-orange {
+  background: #fffaf3;
+  border-left: 6px solid #f39c12;
+}
+
+.subsection-green {
+  background: #f5fff8;
+  border-left: 6px solid #27ae60;
+}
+
+.subsection-darkblue {
+  background: #f4f9ff;
+  border-left: 6px solid #2980b9;
+}
+
+.subsection-amber {
+  background: #fff8f1;
+  border-left: 6px solid #e67e22;
+}
+
+.subsection-purple {
+  background: #faf5ff;
+  border-left: 6px solid #8e44ad;
+}
+
+.fonte-grafico {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #666;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.porto-section {
+  margin-top: 40px;
+  padding: 25px;
+  border-radius: 14px;
+  background: #f7fbff;
+  border-left: 7px solid #2980b9;
+  box-sizing: border-box;
+}
+
+.porto-section h2 {
+  margin-top: 0;
+}
+
+.edu-section {
+  margin-top: 40px;
+  padding: 25px;
+  border-radius: 14px;
+  background: #fffdf8;
+  border-left: 7px solid #d35400;
+  box-sizing: border-box;
+}
+
+.edu-section h2 {
+  margin-top: 0;
+}
+
+.card img {
+  display: block;
+  max-width: 75%;
+  height: auto;
+  width: auto\9;
+  margin: 20px auto 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th {
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+.table-wrapper {
+  margin-top: 30px;
+  overflow-x: auto;
+}
+
+.obs-box {
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #ffffff;
+  border-left: 4px solid #f39c12;
+}
+
+.obs-box p {
+  margin-top: 10px;
+  line-height: 1.7;
+}
+
+.placeholder-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  text-align: center;
+  color: #7f8c8d;
+}
+
+.section-title {
+  width: 95%;
+  margin: 25px auto 0;
+  display: block;
+}
+
+.fonte-imagem {
+  text-align: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #555;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.grafico {
+  display: block;
+  max-width: 75%;
+  height: auto;
+  margin: 20px auto 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
